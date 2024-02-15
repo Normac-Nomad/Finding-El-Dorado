@@ -1,46 +1,10 @@
-import os 
-import math 
-import pygame
-from os import listdir 
-from os.path import isfile, join 
-pygame.init()  
+from modules.modules import * 
+from globalvars.globalvars import *  
+from functions.sprite_functions import *
 
-#53:07
-
-pygame.display.set_caption("Platformer") 
-
-WIDTH, HEIGHT = 1000,400
-FPS = 60 
-PLAYER_VEL = 5 #the player's velocity
-
-window = pygame.display.set_mode((WIDTH, HEIGHT)) #creates the game interface
-
-def flip(sprites): 
-    return [pygame.transform.flip(sprite, True, False) for sprite in sprites] 
-
-def load_sprite_sheets(dir1, dir2, width, height, direction = False): 
-    path = join("assets", dir1, dir2) 
-    images = [f for f in listdir(path) if isfile(join(path, f))] #loads every single file in the directory to then be split 
-            
-    all_sprites = {} 
-
-    for image in images: 
-        sprite_sheet = pygame.image.load(join(path, image)).convert_alpha()# !! DON'T UNDERSTAND !! ;convert alpha allows us to import a transparent background image
-
-        sprites = [] 
-        for i in range(sprite_sheet.get_width() // width): #chops up the sprite sheet into individual frames
-            surface = pygame.Surface((width, height), pygame.SRCALPHA, 32) #creates the frame for our animation 
-            rect = pygame.Rect(i * width, 0, width, height) 
-            surface.blit(sprite_sheet, (0, 0), rect) 
-            sprites.append(pygame.transform.scale2x(surface)) 
-
-        if direction: 
-            all_sprites[image.replace(".png", "") + "_right"] = sprites #these two functions strip the .png from the image name, and append it with right or left to constantly update the movement animation
-            all_sprites[image.replace(".png", "") + "_left"] = flip(sprites) 
-        else: 
-            all_sprites[image.replace(".png", "")] = sprites 
-
-    return all_sprites 
+pygame.init() 
+pygame.display.set_caption(WINDOW_CAPTION) 
+WINDOW_DISPLAY = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT)) #creates the game interface
 
 def get_block(size): # size will be the dimesion of the image for the block
     path = join("assets", "Terrain", "Terrain.png") 
@@ -202,22 +166,22 @@ def get_background(name): #Name is the asset name; function returns a background
     _, _, width, height = image.get_rect() # the two underscores would usually contain the X and Y coordinates of the image. We don't need those at the moment
     tiles = [] 
 
-    for i in range(WIDTH // width + 1): #// is integer divide. Cool innit? 
-        for j in range(HEIGHT // height + 1):#these two snippets of code give us an idea of how many of the background asset we need to create the whole background. The +1 is to ensure that there are no gaps in the background
+    for i in range(WINDOW_WIDTH // width + 1): #// is integer divide. Cool innit? 
+        for j in range(WINDOW_HEIGHT // height + 1):#these two snippets of code give us an idea of how many of the background asset we need to create the whole background. The +1 is to ensure that there are no gaps in the background
             pos = (i * width, j * height) #this gives us the location of the top right corner of the background asset we are currently printing on to the background.
             tiles.append(pos) #appending the current background asset to our list 
 
     return tiles, image 
 
-def draw(window, background, bg_image, player, objects, offset_x): 
+def draw(WINDOW_DISPLAY, background, bg_image, player, objects, offset_x): 
 
     for tile in background: 
-        window.blit(bg_image, tile) #actually drawing our background with the blit function using the tuple from get_background
+        WINDOW_DISPLAY.blit(bg_image, tile) #actually drawing our background with the blit function using the tuple from get_background
 
     for obj in objects: 
-        obj.draw(window, offset_x)
+        obj.draw(WINDOW_DISPLAY, offset_x)
 
-    player.draw(window, offset_x)
+    player.draw(WINDOW_DISPLAY, offset_x)
 
     pygame.display.update() 
 
@@ -277,10 +241,10 @@ def main(window):
     block_size = 96
 
     player = Player(100, 100, 50, 50)   
-    fire = Fire(100, HEIGHT - block_size - 64, 16, 32)
+    fire = Fire(100, WINDOW_HEIGHT - block_size - 64, 16, 32)
     fire.on()
-    floor = [Block(i * block_size, HEIGHT - block_size, block_size) for i in range(-WIDTH // block_size, (WIDTH * 2) // block_size)] #turn this into multiple functions, way to complicated for one line in the video @1:08:39
-    objects = [*floor, Block(0, HEIGHT - block_size * 2, block_size), Block(block_size * 3, HEIGHT - block_size * 4, block_size), fire] #"*thing" breaks everything into it's individual elements and passes them into the objects list; we're just creating the different blocks ontop of the floor
+    floor = [Block(i * block_size, WINDOW_HEIGHT - block_size, block_size) for i in range(-WINDOW_WIDTH // block_size, (WINDOW_WIDTH * 2) // block_size)] #turn this into multiple functions, way to complicated for one line in the video @1:08:39
+    objects = [*floor, Block(0, WINDOW_HEIGHT - block_size * 2, block_size), Block(block_size * 3, WINDOW_HEIGHT - block_size * 4, block_size), fire] #"*thing" breaks everything into it's individual elements and passes them into the objects list; we're just creating the different blocks ontop of the floor
 
     offset_x = 0 
     scroll_area_width = 200 #when the player gets to "scroll_area_width" (200 pixels) the screen will begin scrolling
@@ -304,7 +268,7 @@ def main(window):
         handle_move(player, objects)
         draw(window,background, bg_image, player, objects, offset_x) 
 
-        if (((player.rect.right - offset_x >= WIDTH - scroll_area_width) and player.x_vel > 0) or ((player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0)): #checking the pixel length from the screen; clean this up into a function
+        if (((player.rect.right - offset_x >= WINDOW_WIDTH - scroll_area_width) and player.x_vel > 0) or ((player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0)): #checking the pixel length from the screen; clean this up into a function
             offset_x += player.x_vel
 
     pygame.quit() 
@@ -312,4 +276,4 @@ def main(window):
 
 #the line below executes only when main is run directly prevents it from running indirectly if something is imported from main.py's event loop
 if __name__ == "__main__": 
-    main(window)
+    main(WINDOW_DISPLAY)
