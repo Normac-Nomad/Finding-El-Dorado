@@ -3,58 +3,12 @@ from modules.modules import *
 from globalvars.globalvars import *  
 
 from functions.sprite_functions import *  
-from functions.window_display_functions import *  
+from functions.window_display_functions import *   
+from functions.collision import *  
+from functions.player_movement import *  
 
 from objects.game_objects import * 
-from objects.player import *
-
-def handle_vertical_collision(player, objects, dy): 
-    collided_objects = [] 
-    for obj in objects: 
-        if pygame.sprite.collide_mask(player, obj): #if the player is colliding with an object
-            if dy > 0: #if we are moving down on the screen
-                player.rect.bottom = obj.rect.top #the players feet will be on the top of the object; it's advantageous to use rectangle because it makes calculations for collision easier (will be harder with mask)
-                player.landed()
-            if dy < 0: 
-                player.rect.top = obj.rect.bottom 
-                player.hit_head() 
-
-            collided_objects.append(obj) 
-    
-    return collided_objects 
-
-def collide(player, objects, dx): #comment up @1:33:32
-    player.move(dx, 0)
-    player.update()  
-    collided_objects = None
-    for obj in objects: 
-        if pygame.sprite.collide_mask(player, obj): 
-            collided_objects = obj 
-            break 
-    
-    player.move(-dx, 0)
-    player.update()
-    return collided_objects
-
-
-def handle_move(player, objects): 
-    keys = pygame.key.get_pressed()#this function allows us to see what's being pressed on the keyboard, VERY COOL!
-
-    player.x_vel = 0 
-    collide_left = collide(player, objects, -PLAYER_VELOCITY * 2) #horizontal collision is a bit3111333311113322
-    collide_right = collide(player, objects, PLAYER_VELOCITY * 2)
-
-    if keys[pygame.K_LEFT] and not collide_left: 
-        player.move_left(PLAYER_VELOCITY) 
-    if keys[pygame.K_RIGHT] and not collide_right: 
-        player.move_right(PLAYER_VELOCITY) 
-
-    vertical_collide = handle_vertical_collision(player, objects, player.y_vel) 
-    to_check = [collide_left, collide_right, *vertical_collide] 
-    for obj in to_check:
-        if obj and obj.name == "fire":
-            player.make_hit()
-
+from objects.player import * 
 
 ######################## MAIN ########################
 
