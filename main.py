@@ -1,67 +1,11 @@
 from modules.modules import * 
 from globalvars.globalvars import *  
-from functions.sprite_functions import *
+from functions.sprite_functions import * 
+from objects.game_objects import *
 
 pygame.init() 
 pygame.display.set_caption(WINDOW_CAPTION) 
 WINDOW_DISPLAY = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT)) #creates the game interface
-
-def get_block(size): # size will be the dimesion of the image for the block
-    path = join("assets", "Terrain", "Terrain.png") 
-    image = pygame.image.load(path). convert_alpha() 
-    surface = pygame.Surface((size, size), pygame.SRCALPHA, 32) 
-    rect = pygame.Rect(96, 0, size, size) 
-    surface.blit(image, (0, 0), rect) 
-
-    return pygame.transform.scale2x(surface) 
-
-class Object(pygame.sprite.Sprite): #non instantiated base class for most objects in the game
-    def __init__(self, x, y, width, height, name = None): 
-        super().__init__()
-        self.rect = pygame.Rect(x, y, width, height) 
-        self.image = pygame.Surface((width, height), pygame.SRCALPHA) 
-        self.width = width
-        self.heigth = height 
-        self.name = name 
-
-    def draw(self, win, offset_x): 
-        win.blit(self.image, (self.rect.x - offset_x, self.rect.y))   
-
-class Block(Object): 
-    def __init__(self, x, y, size): 
-        super().__init__(x, y, size, size) 
-        block = get_block(size) 
-        self.image.blit(block, (0,0)) 
-        self.mask = pygame.mask.from_surface(self.image) 
-
-class Fire(Object):  
-    ANIMATION_DELAY = 3
-
-    def __init__(self, x, y, width, height):
-        super().__init__(x, y, width, height, "fire") 
-        self.fire = load_sprite_sheets("Traps", "Fire", width, height)   
-        self.image = self.fire["off"][0] 
-        self.mask = pygame.mask.from_surface(self.image) 
-        self.animation_count = 0 
-        self.animation_name = "off" 
-
-    def on(self): 
-        self.animation_name = "on" 
-
-    def off(self): 
-        self.animation_name = "off" 
-
-    def loop(self):  #@ 1:41:20
-        sprites = self.fire[self.animation_name] 
-        sprite_index = (self.animation_count // self.ANIMATION_DELAY) % len(sprites) #dynamically looping through the different images in the sprite sheet
-        self.image = sprites[sprite_index] 
-        self.animation_count += 1 
-
-        self.rect = self.image.get_rect(topleft = (self.rect.x, self.rect.y)) 
-        self.mask = pygame.mask.from_surface(self.image) #This line ensures we have pixel perfect collison, we are extracting only the pixels to the mask, that way we are no including the empty pixels in the sprite sheet
-
-        if self.animation_count // self.ANIMATION_DELAY > len(sprites): 
-            self.animation_count = 0
 
 class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image part of a larger image
     COLOR = (255, 0, 0) 
@@ -173,7 +117,7 @@ def get_background(name): #Name is the asset name; function returns a background
 
     return tiles, image 
 
-def draw(WINDOW_DISPLAY, background, bg_image, player, objects, offset_x): 
+def draw_window(WINDOW_DISPLAY, background, bg_image, player, objects, offset_x): 
 
     for tile in background: 
         WINDOW_DISPLAY.blit(bg_image, tile) #actually drawing our background with the blit function using the tuple from get_background
@@ -266,7 +210,7 @@ def main(window):
         player.loop(FPS) 
         fire.loop()
         handle_move(player, objects)
-        draw(window,background, bg_image, player, objects, offset_x) 
+        draw_window(window,background, bg_image, player, objects, offset_x) 
 
         if (((player.rect.right - offset_x >= WINDOW_WIDTH - scroll_area_width) and player.x_vel > 0) or ((player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0)): #checking the pixel length from the screen; clean this up into a function
             offset_x += player.x_vel
