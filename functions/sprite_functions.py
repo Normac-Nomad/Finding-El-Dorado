@@ -1,10 +1,22 @@
 from modules.modules import * 
 from globalvars.globalvars import *  
 
-def flip_sprite(sprites): 
+def flip_sprite(sprites):  
+    """  
+    Name: flip_sprites
+    Location: .../finding-el-dorado/functions/sprite_functions 
+    Purpose: Flips sprites
+    Return: Flipped sprite
+    """ 
     return [pygame.transform.flip(sprite, True, False) for sprite in sprites]  
 
-def load_sprite_sheets(dir1, dir2, width, height, direction = False): 
+def load_sprite_sheets(dir1, dir2, width, height, direction = False):  
+    """  
+    Name: load_sprite_sheets
+    Location: .../finding-el-dorado/functions/sprite_functions 
+    Purpose: Loads sprites sheets with passed directories and dimensions
+    Return: Returns the sprites sheets frame by frame in a list
+    """ 
     path = join("assets", dir1, dir2) 
     images = [f for f in listdir(path) if isfile(join(path, f))] #loads every single file in the directory to then be split 
             
