@@ -9,7 +9,6 @@ class Game_Object(pygame.sprite.Sprite): #non instantiated base class for most G
     Purpose: Non-instantiated base class for most objects in the game 
     Return: N/a
     """
-    
     def __init__(self, x, y, width, height, name = None): 
         super().__init__()
         self.rect = pygame.Rect(x, y, width, height) 
