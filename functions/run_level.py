@@ -45,15 +45,3 @@ def play_game(window):
 
 
 #add quit game funtion
-
-def quit_program():
-    """  
-    Name: Quit game
-    Location: .../finding-el-dorado/functions/run_level
-    Purpose: Completely quits the game and program
-    Return: N/a
-    """  
-    #Add save level feature 
-    #Add save user prefrences feature (maybe not here)
-    pygame.quit()
-    quit()

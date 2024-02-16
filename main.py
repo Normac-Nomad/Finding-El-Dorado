@@ -16,7 +16,14 @@ from screens.levels import *
 
 def main(window):  
     
-    play_game(window)
+    current_screen = "Main"
+
+    while True: 
+          
+        if (current_screen == "Main"):
+            main_menu(window)
+        elif (current_screen == "Game"):
+            play_game(window)
 
 if __name__ == "__main__":
     main(WINDOW_DISPLAY)

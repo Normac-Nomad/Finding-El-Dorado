@@ -60,5 +60,31 @@ def player_close_to_boundary(player, offset_x, scroll_width):
     else:  
         return 0  
 
-def main_menu(): 
-    a = "a"
+def main_menu(window):  
+    """  
+    Name: main_menu
+    Location: .../finding-el-dorado/functions/window_display_functions
+    Purpose: Runs the main menu screen for the user
+    Return: N/a
+    """   
+    while True:
+        GAME_CLOCK.tick(GAME_FPS)
+
+        for event in pygame.event.get(): 
+            if (event.type == pygame.QUIT):
+                quit_program() 
+        
+        print ("YO")
+
+
+def quit_program():
+    """  
+    Name: Quit game
+    Location: .../finding-el-dorado/functions/window_display_functions
+    Purpose: Completely quits the game and program
+    Return: N/a
+    """  
+    #Add save level feature 
+    #Add save user prefrences feature (maybe not here)
+    pygame.quit()
+    quit()
