@@ -6,7 +6,7 @@ GAME_CLOCK = pygame.time.Clock()
 GAME_IS_RUNNING = None
 GAME_FPS = 60  
 
-LEVEL_NUMBER = 1
+LEVEL_NUMBER = 40
 
 WINDOW_DISPLAY = None
 WINDOW_CAPTION = "Finding El Dorado!"
