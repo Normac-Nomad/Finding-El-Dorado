@@ -1,5 +1,6 @@
 from modules.modules import * 
-from globalvars.globalvars import *
+from globalvars.globalvars import *  
+from objects.player import * 
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
     """  
@@ -34,4 +35,28 @@ def draw_window(WINDOW_DISPLAY, background, background_tile, player, objects, of
 
     player.draw(WINDOW_DISPLAY, offset_x)
 
-    pygame.display.update()
+    pygame.display.update() 
+
+def player_close_to_boundary(player, offset_x, scroll_width): 
+    """  
+    Name: player_close_to_boundary
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Determines if a player is getting to close to the screen edge. 
+             If so, return the offset needed to keep the player in frame.
+    Return: Offset to keep the player in frame.
+    """ 
+    if ((player.rect.right - offset_x >= WINDOW_WIDTH - scroll_width) and player.x_vel > 0): 
+        right = True 
+    else: 
+        right = False
+
+    if ((player.rect.left - offset_x <= scroll_width) and player.x_vel < 0): 
+        left = True
+    else: 
+        left = False 
+
+    if (right or left):
+        return player.x_vel 
+    else:  
+        return 0
+    

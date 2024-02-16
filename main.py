@@ -23,7 +23,7 @@ def main(window):
     objects = [*floor, Block(0, WINDOW_HEIGHT - BLOCK_SIZE * 2, BLOCK_SIZE), Block(BLOCK_SIZE * 3, WINDOW_HEIGHT - BLOCK_SIZE * 4, BLOCK_SIZE), fire] #"*thing" breaks everything into it's individual elements and passes them into the objects list; we're just creating the different blocks ontop of the floor
 
     offset_x = 0 
-    scroll_area_width = 200 #when the player gets to "scroll_area_width" (200 pixels) the screen will begin scrolling
+    scroll_area_width = WINDOW_SCROLL_BOUNDARY #when the player gets to "scroll_area_width" (200 pixels) the screen will begin scrolling
 
     GAME_IS_RUNNING = True
 
@@ -31,25 +31,23 @@ def main(window):
         GAME_CLOCK.tick(GAME_FPS)#ensures that the while loop runs GAME_FPS=60, regulates frame rate 
 
         for event in pygame.event.get(): 
-            if event.type == pygame.QUIT: #if the user hits the X button (quits the game)
+            if (event.type == pygame.QUIT): #if the user hits the X button (quits the game)
                 GAME_IS_RUNNING = False #game is no longer running
                 break    
 
-            if event.type == pygame.KEYDOWN: 
-                if event.key == pygame.K_SPACE and player.jump_count < 2: 
+            if (event.type == pygame.KEYDOWN): 
+                if (((event.key == pygame.K_SPACE) or (event.key == pygame.K_w)) and player.jump_count < 2): 
                     player.jump()
-
+                    
         player.loop(GAME_FPS) 
         fire.loop()
         handle_move(player, objects)
         draw_window(window,background, bg_image, player, objects, offset_x) 
-
-        if (((player.rect.right - offset_x >= WINDOW_WIDTH - scroll_area_width) and player.x_vel > 0) or ((player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0)): #checking the pixel length from the screen; clean this up into a function
-            offset_x += player.x_vel
+        offset_x += player_close_to_boundary(player, offset_x, scroll_area_width)
 
     pygame.quit() 
     quit()
 
 #the line below executes only when main is run directly prevents it from running indirectly if something is imported from main.py's event loop
 if __name__ == "__main__": 
-    main(WINDOW_DISPLAY)
+    main(WINDOW_DISPLAY) 

@@ -38,4 +38,4 @@ def load_sprite_sheets(dir1, dir2, width, height, direction = False):
         else: 
             all_sprites[image.replace(".png", "")] = sprites 
 
-    return all_sprites 
+    return all_sprites
