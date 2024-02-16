@@ -106,4 +106,4 @@ class Fire(Game_Object):
         self.mask = pygame.mask.from_surface(self.image) #This line ensures we have pixel perfect collison, we are extracting only the pixels to the mask, that way we are no including the empty pixels in the sprite sheet
 
         if self.animation_count // self.fire_animation_delay > len(sprites): 
-            self.animation_count = 0
+            self.animation_count = 0 

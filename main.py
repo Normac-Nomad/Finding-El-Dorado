@@ -1,5 +1,4 @@
 from modules.modules import * 
-
 from globalvars.globalvars import *  
 
 from functions.sprite_functions import *  
@@ -8,19 +7,21 @@ from functions.collision import *
 from functions.player_movement import *  
 
 from objects.game_objects import * 
-from objects.player import * 
+from objects.player import *  
+from levels.levels import *
 
 ######################## MAIN ########################
 
 def main(window):  
-
-    background, bg_image = get_background("Blue.png") #get_background returns the list and image
-
+    '''#this chunk in level 1
+    background, bg_image = get_background(BACKGROUND_IMAGE_NAME) #get_background returns the list and image
     player = Player(100, 100, 50, 50)   
     fire = Fire(100, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
     fire.on()
     floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)] #turn this into multiple functions, way to complicated for one line in the video @1:08:39
-    objects = [*floor, Block(0, WINDOW_HEIGHT - BLOCK_SIZE * 2, BLOCK_SIZE), Block(BLOCK_SIZE * 3, WINDOW_HEIGHT - BLOCK_SIZE * 4, BLOCK_SIZE), fire] #"*thing" breaks everything into it's individual elements and passes them into the objects list; we're just creating the different blocks ontop of the floor
+    objects = [*floor, Block(0, WINDOW_HEIGHT - BLOCK_SIZE * 2, BLOCK_SIZE), fire] #"*thing" breaks everything into it's individual elements and passes them into the objects list; we're just creating the different blocks ontop of the floor
+    '''
+    background, bg_image, player, fire, objects = level_one()
 
     offset_x = 0 
     scroll_area_width = WINDOW_SCROLL_BOUNDARY #when the player gets to "scroll_area_width" (200 pixels) the screen will begin scrolling
@@ -42,7 +43,7 @@ def main(window):
         player.loop(GAME_FPS) 
         fire.loop()
         handle_move(player, objects)
-        draw_window(window,background, bg_image, player, objects, offset_x) 
+        draw_window(window, background, bg_image, player, objects, offset_x) 
         offset_x += player_close_to_boundary(player, offset_x, scroll_area_width)
 
     pygame.quit() 

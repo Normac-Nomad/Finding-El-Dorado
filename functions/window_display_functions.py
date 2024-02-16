@@ -1,16 +1,20 @@
 from modules.modules import * 
 from globalvars.globalvars import *  
-from objects.player import * 
+from objects.player import *  
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
     """  
     Name: get_background
     Location: .../finding-el-dorado/functions/window_display_functions 
     Purpose: Creates the background with the passed background name
-    Return: Returns the individual background tiles and background image
-    """
-    background_tile = pygame.image.load(join("assets", "Background", background_name)) 
-    _, _, width, height = background_tile.get_rect() # the two underscores would usually contain the X and Y coordinates of the image. We don't need those at the moment
+    Return: Returns the background image and the individual background tiles in said order
+    """ 
+    try:
+        background_tile = pygame.image.load(join("assets", "Background", background_name))  
+    except: 
+        background_tile = pygame.image.load(join("assets", "MyAssets", background_name)) 
+
+    _, _, width, height = background_tile.get_rect()
     background = [] 
 
     for i in range(WINDOW_WIDTH // width + 1): #// is integer divide. Cool innit? 
@@ -59,4 +63,3 @@ def player_close_to_boundary(player, offset_x, scroll_width):
         return player.x_vel 
     else:  
         return 0
-    
