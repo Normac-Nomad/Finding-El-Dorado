@@ -28,10 +28,10 @@ def main(window):
     GAME_IS_RUNNING = True
 
     while GAME_IS_RUNNING:
-        GAME_CLOCK.tick(GAME_FPS)#ensures that the while loop runs GAME_FPS=60, regulates frame rate 
+        GAME_CLOCK.tick(GAME_FPS)
 
         for event in pygame.event.get(): 
-            if (event.type == pygame.QUIT): #if the user hits the X button (quits the game)
+            if (event.type == pygame.QUIT): #if the user X's out the window
                 GAME_IS_RUNNING = False #game is no longer running
                 break    
 
