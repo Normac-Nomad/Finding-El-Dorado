@@ -1,6 +1,8 @@
 from modules.modules import * 
 from globalvars.globalvars import *  
-from objects.player import *  
+from objects.player import *   
+from objects.game_objects import *  
+from functions.player_movement import *  
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
     """  
@@ -62,4 +64,13 @@ def player_close_to_boundary(player, offset_x, scroll_width):
     if (right or left):
         return player.x_vel 
     else:  
-        return 0
+        return 0 
+    
+def frame_update(player, fire, window, background, bg_image, objects, offset_x):
+
+    player.loop(GAME_FPS) 
+    fire.loop()
+    handle_move(player, objects) 
+    draw_window(window, background, bg_image, player, objects, offset_x)     
+
+
