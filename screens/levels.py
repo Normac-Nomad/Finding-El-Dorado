@@ -1,8 +1,9 @@
 from modules.modules import * 
-from globalvars.globalvars import *   
+from globalvars.globalvars import * 
+   
 from functions.window_display_functions import * 
 from objects.game_objects import *   
-from objects.player import *  
+from objects.player import *    
 
 def get_level(): 
     if (LEVEL_NUMBER == 1):

@@ -1,8 +1,8 @@
 from modules.modules import * 
 from globalvars.globalvars import *  
+
 from objects.player import *   
 from objects.game_objects import *  
-from functions.player_movement import *  
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
     """  
@@ -51,26 +51,14 @@ def player_close_to_boundary(player, offset_x, scroll_width):
              If so, return the offset needed to keep the player in frame.
     Return: Offset to keep the player in frame.
     """ 
-    if ((player.rect.right - offset_x >= WINDOW_WIDTH - scroll_width) and player.x_vel > 0): 
-        right = True 
-    else: 
-        right = False
-
-    if ((player.rect.left - offset_x <= scroll_width) and player.x_vel < 0): 
-        left = True
-    else: 
-        left = False 
-
-    if (right or left):
+    if (
+    ((player.rect.right - offset_x >= WINDOW_WIDTH - scroll_width) and player.x_vel > 0) 
+    or 
+    ((player.rect.left - offset_x <= scroll_width) and player.x_vel < 0)
+    ): 
         return player.x_vel 
     else:  
-        return 0 
-    
-def frame_update(player, fire, window, background, bg_image, objects, offset_x):
+        return 0  
 
-    player.loop(GAME_FPS) 
-    fire.loop()
-    handle_move(player, objects) 
-    draw_window(window, background, bg_image, player, objects, offset_x)     
-
-
+def main_menu(): 
+    a = "a"
