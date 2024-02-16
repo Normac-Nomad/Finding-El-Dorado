@@ -3,6 +3,7 @@ from globalvars.globalvars import *
 
 from objects.player import *   
 from objects.game_objects import *  
+from screens.levels import * 
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
     """  
@@ -41,7 +42,7 @@ def draw_window(WINDOW_DISPLAY, background, background_tile, player, objects, of
 
     player.draw(WINDOW_DISPLAY, offset_x)
 
-    pygame.display.update() 
+    pygame.display.update()
 
 def player_close_to_boundary(player, offset_x, scroll_width): 
     """  
@@ -59,23 +60,6 @@ def player_close_to_boundary(player, offset_x, scroll_width):
         return player.x_vel 
     else:  
         return 0  
-
-def main_menu(window):  
-    """  
-    Name: main_menu
-    Location: .../finding-el-dorado/functions/window_display_functions
-    Purpose: Runs the main menu screen for the user
-    Return: N/a
-    """   
-    while True:
-        GAME_CLOCK.tick(GAME_FPS)
-
-        for event in pygame.event.get(): 
-            if (event.type == pygame.QUIT):
-                quit_program() 
-        
-        print ("YO")
-
 
 def quit_program():
     """  

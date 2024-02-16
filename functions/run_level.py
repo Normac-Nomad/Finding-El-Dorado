@@ -6,7 +6,7 @@ from functions.window_display_functions import *
 
 from screens.levels import *
     
-def frame_update(player, fire, window, background, bg_image, objects, offset_x):
+def level_frame_update(player, fire, window, background, bg_image, objects, offset_x):
     """  
     Name: frame_update
     Location: .../finding-el-dorado/functions/run_level
@@ -40,7 +40,7 @@ def play_game(window):
                 if (((event.key == pygame.K_SPACE) or (event.key == pygame.K_w)) and the_player.jump_count < 2): 
                     the_player.jump()
                     
-        frame_update(the_player, fire, window, background, bg_image, objects, offset_x)
+        level_frame_update(the_player, fire, window, background, bg_image, objects, offset_x)
         offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
 
 

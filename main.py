@@ -10,7 +10,8 @@ from functions.run_level import *
 from objects.game_objects import * 
 from objects.player import *   
 
-from screens.levels import *
+from screens.levels import * 
+from screens.main_menu import *
 
 ######################## MAIN ########################
 
@@ -19,7 +20,6 @@ def main(window):
     current_screen = "Main"
 
     while True: 
-          
         if (current_screen == "Main"):
             main_menu(window)
         elif (current_screen == "Game"):
