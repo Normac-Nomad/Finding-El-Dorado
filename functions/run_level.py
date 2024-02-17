@@ -3,7 +3,7 @@ from globalvars.globalvars import *
 
 from functions.player_movement import * 
 from functions.window_display_functions import *  
-
+ 
 from screens.levels import *
    
 def level_frame_update(player, fire, window, background, bg_image, objects, offset_x):
@@ -16,7 +16,8 @@ def level_frame_update(player, fire, window, background, bg_image, objects, offs
     player.loop(GAME_FPS) 
     fire.loop()
     handle_move(player, objects) 
-    draw_window(window, background, bg_image, player, objects, offset_x)    
+    if draw_level_window(window, background, bg_image, player, objects, offset_x): 
+        return(True)  
 
 def play_game(window):   
     """  
@@ -28,9 +29,9 @@ def play_game(window):
     Note: The player can exit the game and the program from this
     """ 
     background, bg_image, the_player, fire, objects, offset_x = get_level()
-
+    
     while True:
-        GAME_CLOCK.tick(GAME_FPS)
+        GAME_CLOCK.tick(GAME_FPS) 
 
         for event in pygame.event.get(): 
             if (event.type == pygame.QUIT):
@@ -40,7 +41,8 @@ def play_game(window):
                 if (((event.key == pygame.K_SPACE) or (event.key == pygame.K_w)) and the_player.jump_count < 2): 
                     the_player.jump()
                     
-        level_frame_update(the_player, fire, window, background, bg_image, objects, offset_x)
+        if level_frame_update(the_player, fire, window, background, bg_image, objects, offset_x): 
+            return("Main")
         offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
 
 #add quit game funtion

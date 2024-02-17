@@ -3,6 +3,8 @@ from globalvars.globalvars import *
 
 from objects.player import *   
 from objects.game_objects import *  
+from objects.button import *  
+
 from screens.levels import * 
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
@@ -27,19 +29,24 @@ def get_background(background_name): #Name is the asset name; function returns a
 
     return background, background_tile
 
-def draw_window(WINDOW_DISPLAY, background, background_tile, player, objects, offset_x): 
+def draw_level_window(WINDOW_DISPLAY, background, background_tile, player, objects, offset_x): 
     """  
     Name: draw_window
     Location: .../finding-el-dorado/functions/window_display_functions 
     Purpose: Creating and updating the game visials
     Return: N/a
-    """
+    """ 
     for tile in background: 
         WINDOW_DISPLAY.blit(background_tile, tile) #actually drawing our background with the blit function using the tuple from get_background
 
     for obj in objects: 
-        obj.draw(WINDOW_DISPLAY, offset_x)
+        obj.draw(WINDOW_DISPLAY, offset_x) 
 
+    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH + 10)), (WINDOW_HEIGHT - (WINDOW_HEIGHT + 10)), 
+                         START_IMAGE, HOVER_START_IMAGE, MENU_BUTTON_SCALE) 
+    if (ingame_menu_button.draw()):
+            return(True)
+    
     player.draw(WINDOW_DISPLAY, offset_x)
     pygame.display.update()
 
@@ -48,7 +55,7 @@ def player_close_to_boundary(player, offset_x, scroll_width):
     Name: player_close_to_boundary
     Location: .../finding-el-dorado/functions/window_display_functions 
     Purpose: Determines if a player is getting to close to the screen edge. 
-             If so, return the offset needed to keep the player in frame.
+                    If so, return the offset needed to keep the player in frame.
     Return: Offset to keep the player in frame.
     """ 
     if (
