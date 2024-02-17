@@ -17,7 +17,7 @@ from screens.main_menu import *
 
 def main(window):  
     
-    current_screen = "Main"
+    current_screen = "Game"
 
     while True: 
         if (current_screen == "Main"):
