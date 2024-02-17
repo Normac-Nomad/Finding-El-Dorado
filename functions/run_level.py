@@ -5,7 +5,7 @@ from functions.player_movement import *
 from functions.window_display_functions import *  
 
 from screens.levels import *
-    
+   
 def level_frame_update(player, fire, window, background, bg_image, objects, offset_x):
     """  
     Name: frame_update
@@ -42,6 +42,5 @@ def play_game(window):
                     
         level_frame_update(the_player, fire, window, background, bg_image, objects, offset_x)
         offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
-
 
 #add quit game funtion

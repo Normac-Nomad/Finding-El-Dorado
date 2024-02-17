@@ -2,33 +2,32 @@ from modules.modules import *
 from globalvars.globalvars import * 
    
 from functions.window_display_functions import * 
-from objects.game_objects import *   
-from objects.player import *  
 from screens.levels import * 
+
+from objects.game_objects import *   
+from objects.button import * 
 
 def main_menu(window):  
     """  
     Name: main_menu
     Location: .../finding-el-dorado/functions/window_display_functions
     Purpose: Runs the main menu screen for the user
-    Return: N/a
-    """    
-    background, bg_image, the_player, fire, objects, offset_x = get_level()
+    Return: Depending which button the user clicks, it will return the name of desired screen
+    """     
+    start_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, START_IMAGE, HOVER_START_IMAGE, MENU_BUTTON_SCALE) 
+    exit_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y + MENU_BUTTON_DISTANCE, EXIT_IMAGE, HOVER_EXIT_IMAGE, MENU_BUTTON_SCALE)
 
-    while True:
-        GAME_CLOCK.tick(GAME_FPS)
+    while True:  
+     
+        WINDOW_DISPLAY.fill((255, 220, 0))
+
+        if (start_button.draw()): 
+            return ("Game")
+        if (exit_button.draw()):
+            quit_program()
 
         for event in pygame.event.get(): 
-            if (event.type == pygame.QUIT):
-                quit_program()
+            if (event.type == pygame.QUIT): 
+                quit_program 
 
-            if (event.type == pygame.KEYDOWN): 
-                if (((event.key == pygame.K_SPACE) or (event.key == pygame.K_w)) and the_player.jump_count < 2): 
-                    the_player.jump()
-                    
-        level_frame_update(the_player, fire, window, background, bg_image, objects, offset_x)
-        offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
-
-def main_menu_update(background, background_tile): 
-    for tile in background:
-        WINDOW_DISPLAY.blit(background_tile, tile)
+        pygame.display.update()  

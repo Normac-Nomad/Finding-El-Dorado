@@ -41,7 +41,6 @@ def draw_window(WINDOW_DISPLAY, background, background_tile, player, objects, of
         obj.draw(WINDOW_DISPLAY, offset_x)
 
     player.draw(WINDOW_DISPLAY, offset_x)
-
     pygame.display.update()
 
 def player_close_to_boundary(player, offset_x, scroll_width): 

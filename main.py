@@ -15,17 +15,17 @@ from screens.main_menu import *
 
 ######################## MAIN ########################
 
-a = "a"
-
 def main(window):  
     
-    current_screen = "Game"
+    current_screen = "Main"
 
     while True: 
         if (current_screen == "Main"):
-            main_menu(window)
+            current_screen = main_menu(window)
         elif (current_screen == "Game"):
-            play_game(window)
+            play_game(window) 
+        elif (current_screen == "Pause"): 
+            print("Pause")
 
 if __name__ == "__main__":
-    main(WINDOW_DISPLAY)
+    main(WINDOW_DISPLAY) 
