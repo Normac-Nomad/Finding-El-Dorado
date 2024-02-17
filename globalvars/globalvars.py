@@ -10,12 +10,14 @@ LEVEL_NUMBER = 2
 
 WINDOW_DISPLAY = None
 WINDOW_CAPTION = "Finding El Dorado!"
-WINDOW_WIDTH = 1000
-WINDOW_HEIGHT = 600
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 500
 WINDOW_SCROLL_BOUNDARY = 200 
 
+MENU_BUTTON_WIDTH = 200 
+MENU_BUTTON_HEIGHT = 50
 MENU_BUTTON_SCALE = (WINDOW_HEIGHT + WINDOW_WIDTH) / 1500 
-MENU_BUTTON_DISTANCE = 75 * MENU_BUTTON_SCALE
+MENU_BUTTON_DISTANCE = 50 * MENU_BUTTON_SCALE
 MENU_BUTTON_X_OFFSET = -100 * MENU_BUTTON_SCALE
 MENU_BUTTON_Y_OFFSET = -50 * MENU_BUTTON_SCALE
 CENTER_MENU_BUTTON_X = (WINDOW_WIDTH / 2) + MENU_BUTTON_X_OFFSET 
@@ -34,5 +36,7 @@ START_IMAGE = pygame.image.load("assets/MyAssets/start.png").convert_alpha()
 HOVER_START_IMAGE = pygame.image.load("assets/MyAssets/start_hover.png").convert_alpha() 
 EXIT_IMAGE = pygame.image.load("assets/MyAssets/quit_game.png").convert_alpha()  
 HOVER_EXIT_IMAGE = pygame.image.load("assets/MyAssets/quit_game_hover.png").convert_alpha()
-
-#+#+#+#+#+#+# -- USER SETTINGS -- #+#+#+#+#+#+#
+MAIN_MENU_IMAGE = pygame.image.load("assets/MyAssets/main_menu.png").convert_alpha()  
+HOVER_MAIN_MENU_IMAGE = pygame.image.load("assets/MyAssets/main_menu_hover.png").convert_alpha()
+OPTIONS_IMAGE = pygame.image.load("assets/MyAssets/options.png").convert_alpha()  
+HOVER_OPTIONS_IMAGE = pygame.image.load("assets/MyAssets/options_hover.png").convert_alpha()

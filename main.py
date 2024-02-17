@@ -23,7 +23,9 @@ def main(window):
         if (current_screen == "Main"):
             current_screen = main_menu(window)
         elif (current_screen == "Game"):
+            current_screen = play_game(window)  
+        elif (current_screen == "Options"):
             current_screen = play_game(window) 
 
 if __name__ == "__main__":
-    main(WINDOW_DISPLAY) 
+    main(WINDOW_DISPLAY)

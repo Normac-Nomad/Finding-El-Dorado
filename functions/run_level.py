@@ -16,8 +16,20 @@ def level_frame_update(player, fire, window, background, bg_image, objects, offs
     player.loop(GAME_FPS) 
     fire.loop()
     handle_move(player, objects) 
-    if draw_level_window(window, background, bg_image, player, objects, offset_x): 
-        return(True)  
+      
+    for tile in background: 
+        WINDOW_DISPLAY.blit(bg_image, tile)
+
+    for obj in objects: 
+        obj.draw(WINDOW_DISPLAY, offset_x)
+
+    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
+                         MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
+    if (ingame_menu_button.draw()):
+            return(True)
+    
+    player.draw(WINDOW_DISPLAY, offset_x)
+    pygame.display.update()
 
 def play_game(window):   
     """  
@@ -45,4 +57,4 @@ def play_game(window):
             return("Main")
         offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
 
-#add quit game funtion
+

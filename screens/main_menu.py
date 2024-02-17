@@ -28,6 +28,6 @@ def main_menu(window):
 
         for event in pygame.event.get(): 
             if (event.type == pygame.QUIT): 
-                quit_program 
+                quit_program()
 
         pygame.display.update()  
