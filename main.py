@@ -11,7 +11,8 @@ from objects.game_objects import *
 from objects.player import *   
 
 from screens.levels import * 
-from screens.main_menu import *
+from screens.main_menu import * 
+from screens.options import *
 
 ######################## MAIN ########################
 
@@ -25,7 +26,7 @@ def main(window):
         elif (current_screen == "Game"):
             current_screen = play_game(window)  
         elif (current_screen == "Options"):
-            current_screen = play_game(window) 
+            current_screen = options(window) 
 
 if __name__ == "__main__":
     main(WINDOW_DISPLAY)

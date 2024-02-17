@@ -15,14 +15,18 @@ def main_menu(window):
     Return: Depending which button the user clicks, it will return the name of desired screen
     """     
     start_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, START_IMAGE, HOVER_START_IMAGE, MENU_BUTTON_SCALE) 
-    exit_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y + MENU_BUTTON_DISTANCE, EXIT_IMAGE, HOVER_EXIT_IMAGE, MENU_BUTTON_SCALE)
+    options_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y + MENU_BUTTON_DISTANCE, OPTIONS_IMAGE, HOVER_OPTIONS_IMAGE, MENU_BUTTON_SCALE)
+    exit_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y + (MENU_BUTTON_DISTANCE * 3), EXIT_IMAGE, HOVER_EXIT_IMAGE, MENU_BUTTON_SCALE)
+    
 
     while True:  
      
         WINDOW_DISPLAY.fill((255, 220, 0))
 
         if (start_button.draw()): 
-            return ("Game")
+            return ("Game") 
+        if (options_button.draw()): 
+            return("Options")
         if (exit_button.draw()):
             quit_program()
 

@@ -6,31 +6,6 @@ from functions.window_display_functions import *
  
 from screens.levels import *
    
-def level_frame_update(player, fire, window, background, bg_image, objects, offset_x):
-    """  
-    Name: frame_update
-    Location: .../finding-el-dorado/functions/run_level
-    Purpose: Updates the positions and states of all games objects on screen every frame
-    Return: N/a
-    """ 
-    player.loop(GAME_FPS) 
-    fire.loop()
-    handle_move(player, objects) 
-      
-    for tile in background: 
-        WINDOW_DISPLAY.blit(bg_image, tile)
-
-    for obj in objects: 
-        obj.draw(WINDOW_DISPLAY, offset_x)
-
-    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
-                         MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
-    if (ingame_menu_button.draw()):
-            return(True)
-    
-    player.draw(WINDOW_DISPLAY, offset_x)
-    pygame.display.update()
-
 def play_game(window):   
     """  
     Name: play_game
@@ -57,4 +32,29 @@ def play_game(window):
             return("Main")
         offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
 
+def level_frame_update(player, fire, window, background, bg_image, objects, offset_x):
+    """  
+    Name: frame_update
+    Location: .../finding-el-dorado/functions/run_level
+    Purpose: Updates the positions and states of all games objects on screen every frame
+    Return: N/a
+    """ 
+    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
+                         MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
 
+    player.loop(GAME_FPS) 
+    fire.loop()
+    handle_move(player, objects) 
+      
+    for tile in background: 
+        WINDOW_DISPLAY.blit(bg_image, tile)
+
+    for obj in objects: 
+        obj.draw(WINDOW_DISPLAY, offset_x)
+
+    
+    if (ingame_menu_button.draw()):
+            return(True)
+    
+    player.draw(WINDOW_DISPLAY, offset_x)
+    pygame.display.update()
