@@ -15,7 +15,7 @@ from screens.main_menu import *
 
 ######################## MAIN ########################
 
-
+a = "a"
 
 def main(window):  
     
