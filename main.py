@@ -16,9 +16,9 @@ from screens.levels import *
 
 def main(window):  
     
-    current_screen = "Main"
+    current_screen = "Game"
 
-    while True: 
+    while True:
           
         if (current_screen == "Main"):
             main_menu(window)
