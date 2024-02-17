@@ -32,7 +32,7 @@ WINDOW_DISPLAY = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT)) #creates
 
 START_IMAGE = pygame.image.load("assets/MyAssets/start.png").convert_alpha()  
 HOVER_START_IMAGE = pygame.image.load("assets/MyAssets/start_hover.png").convert_alpha() 
-EXIT_IMAGE = pygame.image.load("assets/MyAssets/exit.png").convert_alpha()  
-HOVER_EXIT_IMAGE = pygame.image.load("assets/MyAssets/exit_hover.png").convert_alpha()
+EXIT_IMAGE = pygame.image.load("assets/MyAssets/quit_game.png").convert_alpha()  
+HOVER_EXIT_IMAGE = pygame.image.load("assets/MyAssets/quit_game_hover.png").convert_alpha()
 
 #+#+#+#+#+#+# -- USER SETTINGS -- #+#+#+#+#+#+#
