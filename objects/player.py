@@ -10,7 +10,7 @@ class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image pa
     Purpose: Playable character used by the user
     Return: N/a
     """ 
-    player_sprite = load_sprite_sheets("MainCharacters", "MaskDude", 32, 32, True) #final argument is for multidirectional sprites
+    player_sprite = load_sprite_sheets("MainCharacters", PLAYER_CHARACTER, 32, 32, True) #final argument is for multidirectional sprites
     player_animation_delay = 3
     player_gravity = GRAVITY
 

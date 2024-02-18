@@ -2,10 +2,11 @@ from modules.modules import *
 from globalvars.globalvars import * 
 
 from objects.game_objects import *   
+from objects.game_image import * 
 from objects.player import * 
 from objects.button import *  
 
-def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
+def get_background(background_name):
     """  
     Name: get_background
     Location: .../finding-el-dorado/functions/window_display_functions 
@@ -31,10 +32,17 @@ def levels():
 
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
                          MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
+    level_1 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_1 = GameImage(SIGN_1, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE + (3 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
 
     while True:  
      
         WINDOW_DISPLAY.fill((255, 220, 0))
+
+        
+        if (level_1.draw()):
+            print("ye") 
+        sign_1.draw()
 
         if (ingame_menu_button.draw()):
             return("Main")

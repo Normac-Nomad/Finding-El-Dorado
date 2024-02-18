@@ -23,7 +23,7 @@ def main_menu():
     exit_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y + (MENU_BUTTON_DISTANCE * 9), EXIT_IMAGE, HOVER_EXIT_IMAGE, MENU_BUTTON_SCALE)
     
     title_image = GameImage(TITLE_IMAGE, CENTER_MENU_BUTTON_X - MENU_BUTTON_X_OFFSET + 
-                            (-600 * 0.8 * MENU_BUTTON_SCALE), CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 9), MENU_BUTTON_SCALE * 0.8)
+                            (-600 * 0.8 * MENU_BUTTON_SCALE), CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 10), MENU_BUTTON_SCALE * 0.8)
 
     while True:  
      

@@ -14,7 +14,7 @@ def main(window):
     
     current_screen = "Main"
 
-    while True: 
+    while True:
         if (current_screen == "Main"):
             current_screen = main_menu()
         elif (current_screen == "Game"):
