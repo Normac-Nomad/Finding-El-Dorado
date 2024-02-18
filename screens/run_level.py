@@ -5,7 +5,7 @@ from functions.player_movement import *
 from functions.window_display_functions import *  
  
 from screens.levels import *
-   
+
 def play_game():   
     """  
     Name: play_game
@@ -15,7 +15,37 @@ def play_game():
 
     Note: The player can exit the game and the program from this
     """ 
-    background, bg_image, the_player, fire, objects = get_level() 
+    background, bg_image, the_player, fire, objects = get_level(LEVEL_NUMBER) 
+    offset_x = 0
+    offset_y = 0
+
+    while True:
+        GAME_CLOCK.tick(GAME_FPS) 
+
+        for event in pygame.event.get(): 
+            if (event.type == pygame.QUIT):
+                quit_program()
+
+            if (event.type == pygame.KEYDOWN): 
+                if (((event.key == pygame.K_SPACE) or (event.key == pygame.K_w)) and the_player.jump_count < 2): 
+                    the_player.jump()
+                    
+        if level_frame_update(the_player, fire, background, bg_image, objects, offset_x, offset_y): 
+            return("Main") 
+        
+        offset_x += player_close_to_x_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY_X)
+        offset_y += player_close_to_y_boundary(the_player, offset_y, WINDOW_SCROLL_BOUNDARY_Y)
+
+def play_game_level(level):   
+    """  
+    Name: play_game
+    Location: .../finding-el-dorado/functions/run_level 
+    Purpose: Begins the game and selected level for the user
+    Return: N/a 
+
+    Note: The player can exit the game and the program from this
+    """ 
+    background, bg_image, the_player, fire, objects = get_level(level) 
     offset_x = 0
     offset_y = 0
 

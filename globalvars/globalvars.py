@@ -6,12 +6,12 @@ GAME_CLOCK = pygame.time.Clock()
 GAME_IS_RUNNING = None
 GAME_FPS = 60  
 
-LEVEL_NUMBER = 2
+LEVEL_NUMBER = 1
 
 WINDOW_DISPLAY = None
 WINDOW_CAPTION = "Finding El Dorado!"
-WINDOW_WIDTH = 900
-WINDOW_HEIGHT = 1000
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 600
 WINDOW_SCROLL_BOUNDARY_X = 200 
 WINDOW_SCROLL_BOUNDARY_Y = 150 
 
@@ -55,4 +55,5 @@ HOVER_CHARACTERS_IMAGE = pygame.image.load("assets/MyAssets/characters_hover.png
 ###### LEVEL BUTTONS ###### 
 LEVEL_SELECT_IMAGE = pygame.image.load("assets/MyAssets/level_select.png").convert_alpha()
 HOVER_LEVEL_SELECT_IMAGE = pygame.image.load("assets/MyAssets/level_select_hover.png").convert_alpha() 
-SIGN_1 = pygame.image.load("assets/Menu/Levels/01.png").convert_alpha()
+SIGN_1 = pygame.image.load("assets/Menu/Levels/01.png").convert_alpha() 
+SIGN_2 = pygame.image.load("assets/Menu/Levels/02.png").convert_alpha()

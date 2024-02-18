@@ -4,7 +4,7 @@ from globalvars.globalvars import *
 from objects.game_objects import *   
 from objects.game_image import * 
 from objects.player import * 
-from objects.button import *  
+from objects.button import *   
 
 def get_background(background_name):
     """  
@@ -32,17 +32,23 @@ def levels():
 
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
                          MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
-    level_1 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
-    sign_1 = GameImage(SIGN_1, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE + (3 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
+    level_1 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3), LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_1 = GameImage(SIGN_1, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3) + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
+    level_2 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_2 = GameImage(SIGN_2, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
+
 
     while True:  
      
         WINDOW_DISPLAY.fill((255, 220, 0))
 
+        if (level_1.draw()): 
+            return("Level1")
+        elif (level_2.draw()): 
+            return("Level2")
         
-        if (level_1.draw()):
-            print("ye") 
-        sign_1.draw()
+        sign_1.draw() 
+        sign_2.draw() 
 
         if (ingame_menu_button.draw()):
             return("Main")
@@ -54,10 +60,11 @@ def levels():
 
         pygame.display.update()  
 
-def get_level(): 
-    if (LEVEL_NUMBER == 1):
+def get_level(level_number): 
+
+    if (level_number == 1):
         return level_one()
-    elif (LEVEL_NUMBER == 2): 
+    elif (level_number == 2): 
         return level_two() 
     else: 
         return level_test()
