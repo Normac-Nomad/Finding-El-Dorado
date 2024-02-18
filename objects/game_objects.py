@@ -2,7 +2,7 @@ from modules.modules import *
 from globalvars.globalvars import *  
 from functions.sprite_functions import *
 
-class Game_Object(pygame.sprite.Sprite): #non instantiated base class for most Game_Objectss in the game
+class Game_Object(pygame.sprite.Sprite):
     """  
     Name: Game_Object 
     Location: .../finding-el-dorado/objects/game_objects 
@@ -17,14 +17,14 @@ class Game_Object(pygame.sprite.Sprite): #non instantiated base class for most G
         self.heigth = height 
         self.name = name 
 
-    def draw(self, display, offset_x):  
+    def draw(self, display, offset_x, offset_y):  
         """  
         Name: draw
         Location: .../finding-el-dorado/objects/game_objects 
         Purpose: Affixes objects onto the game window
         Return: N/a
         """
-        display.blit(self.image, (self.rect.x - offset_x, self.rect.y))   
+        display.blit(self.image, (self.rect.x - offset_x, self.rect.y - offset_y))   
 
 class Block(Game_Object):  
     """  

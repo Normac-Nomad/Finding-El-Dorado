@@ -29,7 +29,7 @@ def get_background(background_name): #Name is the asset name; function returns a
 
     return background, background_tile
 
-def player_close_to_boundary(player, offset_x, scroll_width): 
+def player_close_to_x_boundary(player, offset_x, scroll_width): 
     """  
     Name: player_close_to_boundary
     Location: .../finding-el-dorado/functions/window_display_functions 
@@ -43,6 +43,23 @@ def player_close_to_boundary(player, offset_x, scroll_width):
     ((player.rect.left - offset_x <= scroll_width) and player.x_vel < 0)
     ): 
         return player.x_vel 
+    else:  
+        return 0   
+    
+def player_close_to_y_boundary(player, offset_y, scroll_width): 
+    """  
+    Name: player_close_to_boundary
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Determines if a player is getting to close to the screen edge. 
+                    If so, return the offset needed to keep the player in frame.
+    Return: Offset to keep the player in frame.
+    """ 
+    if (
+    ((player.rect.top - offset_y >= WINDOW_HEIGHT - scroll_width) and player.y_vel > 0) 
+    or 
+    ((player.rect.bottom - offset_y <= scroll_width) and player.y_vel < 0)
+    ): 
+        return player.y_vel 
     else:  
         return 0  
 

@@ -7,7 +7,7 @@ from screens.levels import *
 from objects.game_objects import * 
 from objects.button import *  
 
-def options():  
+def characters():  
 
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
                          MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
@@ -21,6 +21,6 @@ def options():
 
         for event in pygame.event.get(): 
             if (event.type == pygame.QUIT): 
-                quit_program()  
+                quit_program() 
 
-        pygame.display.update()  
+        pygame.display.update()

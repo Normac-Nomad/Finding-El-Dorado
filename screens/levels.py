@@ -1,9 +1,9 @@
 from modules.modules import * 
 from globalvars.globalvars import * 
-   
-from functions.window_display_functions import *  
+
 from objects.game_objects import *   
-from objects.player import *
+from objects.player import * 
+from objects.button import *  
 
 def get_background(background_name): #Name is the asset name; function returns a background containing a list (which is the background)
     """  
@@ -27,6 +27,25 @@ def get_background(background_name): #Name is the asset name; function returns a
 
     return background, background_tile
 
+def levels(): 
+
+    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
+                         MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
+
+    while True:  
+     
+        WINDOW_DISPLAY.fill((255, 220, 0))
+
+        if (ingame_menu_button.draw()):
+            return("Main")
+
+        for event in pygame.event.get(): 
+            if (event.type == pygame.QUIT): 
+                pygame.quit() 
+                quit()  
+
+        pygame.display.update()  
+
 def get_level(): 
     if (LEVEL_NUMBER == 1):
         return level_one()
@@ -45,7 +64,7 @@ def level_one():
     floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)] 
     objects = [*floor, Block(0, WINDOW_HEIGHT - (BLOCK_SIZE * 2), BLOCK_SIZE), fire]  
 
-    return (background, bg_image, player, fire, objects, 0) 
+    return (background, bg_image, player, fire, objects) 
 
 def level_two():   
     
@@ -57,7 +76,7 @@ def level_two():
     floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)] 
     objects = [*floor, Block(0, WINDOW_HEIGHT - (BLOCK_SIZE * 2), BLOCK_SIZE), fire]  
 
-    return (background, bg_image, player, fire, objects, 0)
+    return (background, bg_image, player, fire, objects)
 
 def level_test():   
     
@@ -71,4 +90,4 @@ def level_test():
     
     objects = [*floor, *block_wall_left, *block_wall_right, fire]  
 
-    return (background, bg_image, player, fire, objects, 0)
+    return (background, bg_image, player, fire, objects)

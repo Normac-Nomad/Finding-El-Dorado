@@ -31,8 +31,8 @@ class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image pa
         self.rect = self.sprite.get_rect(topleft = (self.rect.x, self.rect.y)) 
         self.mask = pygame.mask.from_surface(self.sprite) #This line ensures we have pixel perfect collison, we are extracting only the pixels to the mask, that way we are no including the empty pixels in the sprite sheet
 
-    def draw(self, win, offset_x): 
-        win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y)) #draws the player sprite onto the window
+    def draw(self, win, offset_x, offset_y): 
+        win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y - offset_y)) #draws the player sprite onto the window
 
     def move(self, dx, dy): #d = displacement arguments 
         self.rect.x += dx 

@@ -6,7 +6,7 @@ from functions.window_display_functions import *
  
 from screens.levels import *
    
-def play_game(window):   
+def play_game():   
     """  
     Name: play_game
     Location: .../finding-el-dorado/functions/run_level 
@@ -15,8 +15,10 @@ def play_game(window):
 
     Note: The player can exit the game and the program from this
     """ 
-    background, bg_image, the_player, fire, objects, offset_x = get_level()
-    
+    background, bg_image, the_player, fire, objects = get_level() 
+    offset_x = 0
+    offset_y = 0
+
     while True:
         GAME_CLOCK.tick(GAME_FPS) 
 
@@ -28,11 +30,13 @@ def play_game(window):
                 if (((event.key == pygame.K_SPACE) or (event.key == pygame.K_w)) and the_player.jump_count < 2): 
                     the_player.jump()
                     
-        if level_frame_update(the_player, fire, window, background, bg_image, objects, offset_x): 
-            return("Main")
-        offset_x += player_close_to_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY)
+        if level_frame_update(the_player, fire, background, bg_image, objects, offset_x, offset_y): 
+            return("Main") 
+        
+        offset_x += player_close_to_x_boundary(the_player, offset_x, WINDOW_SCROLL_BOUNDARY_X)
+        offset_y += player_close_to_y_boundary(the_player, offset_y, WINDOW_SCROLL_BOUNDARY_Y)
 
-def level_frame_update(player, fire, window, background, bg_image, objects, offset_x):
+def level_frame_update(player, fire, background, bg_image, objects, offset_x, offset_y):
     """  
     Name: frame_update
     Location: .../finding-el-dorado/functions/run_level
@@ -50,11 +54,11 @@ def level_frame_update(player, fire, window, background, bg_image, objects, offs
         WINDOW_DISPLAY.blit(bg_image, tile)
 
     for obj in objects: 
-        obj.draw(WINDOW_DISPLAY, offset_x)
+        obj.draw(WINDOW_DISPLAY, offset_x, offset_y)
 
     
     if (ingame_menu_button.draw()):
             return(True)
     
-    player.draw(WINDOW_DISPLAY, offset_x)
+    player.draw(WINDOW_DISPLAY, offset_x, offset_y)
     pygame.display.update()
