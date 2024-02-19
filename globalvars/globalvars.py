@@ -34,6 +34,7 @@ BLOCK_SIZE = 96
 pygame.display.set_caption(WINDOW_CAPTION) 
 WINDOW_DISPLAY = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT)) #creates the game interface
 
+###### MENU BUTTON VARIABLES ###### 
 MENU_BUTTON_WIDTH = 200 
 MENU_BUTTON_HEIGHT = 50
 MENU_BUTTON_SCALE = (WINDOW_HEIGHT + WINDOW_WIDTH) / 2200
