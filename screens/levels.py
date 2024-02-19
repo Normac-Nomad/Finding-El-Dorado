@@ -188,7 +188,8 @@ def last_level():
     fire = Fire(100, -200, 16, 32)
     floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)] 
     floor2 = [Block(i * BLOCK_SIZE + 2000, WINDOW_HEIGHT - BLOCK_SIZE + 200, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)]  
-    objects = [*floor, *floor2, fire]  
+    floor3 = [Block(i * BLOCK_SIZE + 2000, WINDOW_HEIGHT - BLOCK_SIZE + 700, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 20) // BLOCK_SIZE)]  
+    objects = [*floor, *floor2, *floor3, fire]  
 
     return (background, bg_image, player, fire, objects)
 
