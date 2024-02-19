@@ -3,7 +3,16 @@ from globalvars.globalvars import *
 from functions.collision import *  
 
 def handle_move(player, objects): 
-    keys = pygame.key.get_pressed()#this function allows us to see what's being pressed on the keyboard, VERY COOL!
+    """
+    Name: handle_move
+    Location: .../finding-el-dorado/functions/player_movement.py
+    Purpose: Handles player movement based on keyboard input and collision detection
+    Parameters:
+        - player: Player object
+        - objects: List of objects for collision detection 
+    Return: N/a
+    """
+    keys = pygame.key.get_pressed()  # This function allows us to see what's being pressed on the keyboard, VERY COOL!
 
     player.x_vel = 0 
     collide_left = collide(player, objects, -PLAYER_VELOCITY * 2) 
@@ -18,6 +27,7 @@ def handle_move(player, objects):
 
     if ((keys[pygame.K_LEFT] or keys[pygame.K_a]) and not collide_left): 
         player.move_left(current_velocity) 
+
     if ((keys[pygame.K_RIGHT] or keys[pygame.K_d]) and not collide_right): 
         player.move_right(current_velocity)
 
@@ -25,5 +35,5 @@ def handle_move(player, objects):
     to_check = [collide_left, collide_right, *vertical_collide] 
     
     for obj in to_check:
-        if obj and obj.name == "fire":
-            player.make_hit()
+        if (obj and obj.name == "fire"):
+            player.make_hit() 

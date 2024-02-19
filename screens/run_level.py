@@ -17,8 +17,7 @@ def play_game():
     """  
     user_settings = []   
     user_settings = get_user_settings(user_settings)
-    background, bg_image, the_player, fire, objects = get_level(int(user_settings[4][7:])) 
-    print(user_settings[4][7:]) 
+    background, bg_image, the_player, fire, objects = get_level(int(user_settings[4][7:]))
     offset_x = 0
     offset_y = 0
 
