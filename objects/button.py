@@ -45,16 +45,16 @@ class Button():
         action = False 
         pos = pygame.mouse.get_pos()  
 
-        if self.image_rect.collidepoint(pos): 
+        if (self.image_rect.collidepoint(pos)): 
             WINDOW_DISPLAY.blit(self.hover, (self.hover_rect.x, self.hover_rect.y)) 
             
-            if pygame.mouse.get_pressed()[0] == 1 and not self.clicked: 
+            if (pygame.mouse.get_pressed()[0] == 1) and (not self.clicked): 
                 self.clicked = True 
                 action = True
         else: 
             WINDOW_DISPLAY.blit(self.image, (self.image_rect.x, self.image_rect.y))  
 
-        if pygame.mouse.get_pressed()[0] == 0:
+        if (pygame.mouse.get_pressed()[0] == 0):
             self.clicked = False 
         
         return action

@@ -9,7 +9,7 @@ class Game_Object(pygame.sprite.Sprite):
     Purpose: Non-instantiated base class for most objects in the game 
     Return: N/a
     """
-    def __init__(self, x, y, width, height, name=None): 
+    def __init__(self, x, y, width, height, name = None): 
         """
         Name: __init__
         Location: .../finding-el-dorado/objects/game_objects 
@@ -135,4 +135,13 @@ class Fire(Game_Object):
         Purpose: Handles the fire sprite animation and contains the fire mask for pixel perfect collision
         Return: N/a
         """
-        sprites = self.fire[self.animation_name] 
+        sprites = self.fire[self.animation_name]  
+        sprite_index = (self.animation_count // self.fire_animation_delay) % len(sprites) #dynamically looping through the different images in the sprite sheet
+        self.image = sprites[sprite_index] 
+        self.animation_count += 1 
+
+        self.rect = self.image.get_rect(topleft = (self.rect.x, self.rect.y)) 
+        self.mask = pygame.mask.from_surface(self.image) #This line ensures we have pixel perfect collison, we are extracting only the pixels to the mask, that way we are no including the empty pixels in the sprite sheet
+
+        if ((self.animation_count // self.fire_animation_delay) > len(sprites)): 
+            self.animation_count = 0

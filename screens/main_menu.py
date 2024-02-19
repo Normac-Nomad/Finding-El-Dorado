@@ -12,7 +12,8 @@ def main_menu():
     """  
     Name: main_menu
     Location: .../finding-el-dorado/functions/window_display_functions
-    Purpose: Runs the main menu screen for the user
+    Purpose: Runs the main menu screen for the user 
+    Parameters: N/a
     Return: Depending which button the user clicks, it will return the name of desired screen
     """     
     start_button = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, START_IMAGE, HOVER_START_IMAGE, MENU_BUTTON_SCALE) 

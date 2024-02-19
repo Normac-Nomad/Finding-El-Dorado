@@ -6,13 +6,15 @@ from objects.game_image import *
 from objects.player import * 
 from objects.button import *   
 
-def get_background(background_name):
+def get_background(background_name):   
     """  
     Name: get_background
     Location: .../finding-el-dorado/functions/window_display_functions 
     Purpose: Creates the background with the passed background name
+    Parameters: 
+        - background_name (str): The name of the background image file
     Return: Returns the background image and the individual background tiles in said order
-    """ 
+    """
     try:
         background_tile = pygame.image.load(join("assets", "Background", background_name))  
     except: 
@@ -29,32 +31,36 @@ def get_background(background_name):
     return background, background_tile
 
 def levels(): 
-
+    """
+    Name: levels
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Allows the user to select a level
+    Parameters: N/a
+    Return: Returns the next screen to be displayed ('Level1', 'Level2', or 'Main')
+    """ 
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
-                         MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
+                                MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
     level_1 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3), LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
     sign_1 = GameImage(SIGN_1, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3) + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
     level_2 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
     sign_2 = GameImage(SIGN_2, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
 
-
     while True:  
-     
         WINDOW_DISPLAY.fill((255, 220, 0))
 
         if (level_1.draw()):  
             update_user_settings(4, "LEVEL: 1")
-            return("Level1") 
+            return "Level1" 
         
         elif (level_2.draw()): 
             update_user_settings(4, "LEVEL: 2")
-            return("Level2")
+            return "Level2"
         
         sign_1.draw() 
         sign_2.draw() 
 
         if (ingame_menu_button.draw()):
-            return("Main")
+            return "Main"
 
         for event in pygame.event.get(): 
             if (event.type == pygame.QUIT): 
@@ -64,7 +70,14 @@ def levels():
         pygame.display.update()  
 
 def get_level(level_number): 
-
+    """
+    Name: get_level
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Retrieves the specified level
+    Parameters: 
+        - level_number (int): The number of the level to retrieve
+    Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
+    """
     if (level_number == 1):
         return level_one()
     elif (level_number == 2): 
@@ -73,6 +86,13 @@ def get_level(level_number):
         return level_test()
 
 def level_one(): 
+    """
+    Name: level_one
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Generates information for Level 1
+    Parameters: N/a
+    Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
+    """
     background, bg_image = get_background("Sky.png")  
     player = Player(100, 100, 50, 50)  
 
@@ -84,6 +104,13 @@ def level_one():
     return (background, bg_image, player, fire, objects) 
 
 def level_two():   
+    """
+    Name: level_two
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Generates information for Level 2
+    Parameters: N/a
+    Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
+    """ 
     background, bg_image = get_background("Yellow.png")  
     player = Player(100, 100, 50, 50)     
 
@@ -95,7 +122,13 @@ def level_two():
     return (background, bg_image, player, fire, objects)
 
 def level_test():   
-    
+    """
+    Name: level_test
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Generates information for a test level 
+    Parameters: N/a
+    Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
+    """ 
     background, bg_image = get_background("Gray.png")  
     player = Player(100, 100, 50, 50)  
 

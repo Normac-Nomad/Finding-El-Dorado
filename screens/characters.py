@@ -7,8 +7,13 @@ from screens.levels import *
 from objects.game_objects import * 
 from objects.button import *  
 
-def characters():  
-
+def characters():   
+    """
+    Name: characters
+    Location: .../finding-el-dorado/functions/character_selection.py
+    Purpose: Allows the user to select a character
+    Return: Returns the next screen to be displayed ('Game' or 'Main')
+    """
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
                          MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
     mask_dude = Button(CENTER_MENU_BUTTON_X - (MENU_BUTTON_DISTANCE * 9), CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 10), MASK_BUTTON, MASK_JUMP_BUTTON, MENU_BUTTON_SCALE * 5)

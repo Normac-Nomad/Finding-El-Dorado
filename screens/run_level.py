@@ -7,10 +7,12 @@ from functions.window_display_functions import *
 from screens.levels import *
 
 def play_game():   
-    """  
+    """
     Name: play_game
     Location: .../finding-el-dorado/functions/run_level 
     Purpose: Begins the game and selected level for the user
+    Parameters:
+        N/a
     Return: N/a 
 
     Note: The player can exit the game and the program from this
@@ -39,12 +41,13 @@ def play_game():
         offset_y += player_close_to_y_boundary(the_player, offset_y, WINDOW_SCROLL_BOUNDARY_Y)
 
 def play_game_level(level):   
-    """  
+    """
     Name: play_game
     Location: .../finding-el-dorado/functions/run_level 
     Purpose: Begins the game and selected level for the user
+    Parameters:
+        level (int): The level number to play
     Return: N/a 
-
     Note: The player can exit the game and the program from this
     """ 
     background, bg_image, the_player, fire, objects = get_level(level) 
@@ -69,10 +72,18 @@ def play_game_level(level):
         offset_y += player_close_to_y_boundary(the_player, offset_y, WINDOW_SCROLL_BOUNDARY_Y)
 
 def level_frame_update(player, fire, background, bg_image, objects, offset_x, offset_y):
-    """  
+    """
     Name: frame_update
     Location: .../finding-el-dorado/functions/run_level
     Purpose: Updates the positions and states of all games objects on screen every frame
+    Parameters:
+        player (Player): The player object
+        fire (Fire): The fire object
+        background (list): List of background positions
+        bg_image (pygame.Surface): Background image
+        objects (list): List of game objects
+        offset_x (int): X offset for scrolling
+        offset_y (int): Y offset for scrolling
     Return: N/a
     """ 
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 

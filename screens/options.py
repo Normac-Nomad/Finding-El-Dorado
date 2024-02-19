@@ -7,8 +7,14 @@ from screens.levels import *
 from objects.game_objects import * 
 from objects.button import *  
 
-def options():
-
+def options(): 
+    """
+    Name: options
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Displays options menu for changing display settings
+    Parameters: N/a
+    Return: Returns the next screen to be displayed ('Main' if the main menu is selected)
+    """ 
     ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
                          MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
     r1280 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 4), R1280_IMAGE, HOVER_R1280_IMAGE, MENU_BUTTON_SCALE) 

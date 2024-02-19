@@ -65,9 +65,9 @@ def player_close_to_y_boundary(player, offset_y, scroll_width):
     Return: Offset to keep the player in frame.
     """ 
     if (
-        ((player.rect.top - offset_y >= WINDOW_HEIGHT - scroll_width) and player.y_vel > 0) 
-        or 
-        ((player.rect.bottom - offset_y <= scroll_width) and player.y_vel < 0)
+    ((player.rect.top - offset_y >= WINDOW_HEIGHT - scroll_width) and player.y_vel > 0) 
+    or 
+    ((player.rect.bottom - offset_y <= scroll_width) and player.y_vel < 0)
     ): 
         return player.y_vel 
     else:  

@@ -12,7 +12,7 @@ def flip_sprite(sprites):
     """ 
     return [pygame.transform.flip(sprite, True, False) for sprite in sprites]  
 
-def load_sprite_sheets(dir1, dir2, width, height, direction=False):  
+def load_sprite_sheets(dir1, dir2, width, height, direction = False):  
     """  
     Name: load_sprite_sheets
     Location: .../finding-el-dorado/functions/sprite_functions 

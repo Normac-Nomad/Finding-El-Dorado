@@ -12,8 +12,7 @@ def handle_move(player, objects):
         - objects: List of objects for collision detection 
     Return: N/a
     """
-    keys = pygame.key.get_pressed()  # This function allows us to see what's being pressed on the keyboard, VERY COOL!
-
+    keys = pygame.key.get_pressed()  
     player.x_vel = 0 
     collide_left = collide(player, objects, -PLAYER_VELOCITY * 2) 
     collide_right = collide(player, objects, PLAYER_VELOCITY * 2)
