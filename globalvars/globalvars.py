@@ -43,7 +43,8 @@ MENU_BUTTON_Y_OFFSET = -50 * MENU_BUTTON_SCALE
 CENTER_MENU_BUTTON_X = (WINDOW_WIDTH / 2) + MENU_BUTTON_X_OFFSET 
 CENTER_MENU_BUTTON_Y = (WINDOW_HEIGHT / 2) + MENU_BUTTON_Y_OFFSET  
 
-TITLE_IMAGE = pygame.image.load("assets/MyAssets/finding_el_dorado.png").convert_alpha()
+TITLE_IMAGE = pygame.image.load("assets/MyAssets/finding_el_dorado.png").convert_alpha() 
+RESTART_IMAGE = pygame.image.load("assets/MyAssets/restart.png").convert_alpha() 
 
 ###### MAIN MENU BUTTONS ######
 START_IMAGE = pygame.image.load("assets/MyAssets/start.png").convert_alpha()  
@@ -76,9 +77,9 @@ VIRTUAL_BUTTON = pygame.image.load("assets/MyAssets/virtual.png").convert_alpha(
 VIRTUAL_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/VirtualGuy/jump.png").convert_alpha() 
 
 ##### OPTIONS BUTTONS #####
-R1280_IMAGE = pygame.image.load("assets/MyAssets/1280.png").convert_alpha()  
-HOVER_R1280_IMAGE = pygame.image.load("assets/MyAssets/1280_hover.png").convert_alpha() 
-R1024_IMAGE = pygame.image.load("assets/MyAssets/1024.png").convert_alpha()  
+R1280_IMAGE = pygame.image.load("assets/MyAssets/1280.png").convert_alpha()
+HOVER_R1280_IMAGE = pygame.image.load("assets/MyAssets/1280_hover.png").convert_alpha()
+R1024_IMAGE = pygame.image.load("assets/MyAssets/1024.png").convert_alpha()
 HOVER_R1024_IMAGE = pygame.image.load("assets/MyAssets/1024_hover.png").convert_alpha()
-R800_IMAGE = pygame.image.load("assets/MyAssets/800.png").convert_alpha()  
-HOVER_R800_IMAGE = pygame.image.load("assets/MyAssets/800_hover.png").convert_alpha() 
+R800_IMAGE = pygame.image.load("assets/MyAssets/800.png").convert_alpha()
+HOVER_R800_IMAGE = pygame.image.load("assets/MyAssets/800_hover.png").convert_alpha()
