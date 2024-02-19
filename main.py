@@ -29,7 +29,11 @@ def main(window):
         elif (current_screen == "Level1"):  
             current_screen = play_game_level(1) 
         elif (current_screen == "Level2"):  
-            current_screen = play_game_level(2)
+            current_screen = play_game_level(2) 
+        elif (current_screen == "Level3"): 
+            current_screen = play_game_level(3) 
+        elif (current_screen == "Level4"):  
+            current_screen = play_game_level(4)
 
 if __name__ == "__main__":
     main(WINDOW_DISPLAY)

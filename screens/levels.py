@@ -37,37 +37,60 @@ def levels():
     Purpose: Allows the user to select a level
     Parameters: N/a
     Return: Returns the next screen to be displayed ('Level1', 'Level2', or 'Main')
-    """ 
-    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)), 
-                                MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5) 
-    level_1 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3), LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
-    sign_1 = GameImage(SIGN_1, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3) + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
-    level_2 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE, LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
-    sign_2 = GameImage(SIGN_2, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)), (CENTER_MENU_BUTTON_Y - MENU_BUTTON_DISTANCE + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
+    """
+    ingame_menu_button = Button((WINDOW_WIDTH - (WINDOW_WIDTH - 5)), (WINDOW_HEIGHT - (WINDOW_HEIGHT - 5)),
+                                MAIN_MENU_IMAGE, HOVER_MAIN_MENU_IMAGE, MENU_BUTTON_SCALE / 1.5)
+    
+    level_1 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 9),
+                     LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_1 = GameImage(SIGN_1, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)),
+                       (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 9) + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
 
-    while True:  
+    level_2 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 7),
+                     LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_2 = GameImage(SIGN_2, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)),
+                       (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 7) + (4 * MENU_BUTTON_SCALE)),MENU_BUTTON_SCALE * 2.5)
+
+    level_3 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 5),
+                     LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_3 = GameImage(SIGN_3, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)),
+                       (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 5) + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
+
+    level_4 = Button(CENTER_MENU_BUTTON_X, CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3),
+                     LEVEL_SELECT_IMAGE, HOVER_LEVEL_SELECT_IMAGE, MENU_BUTTON_SCALE)
+    sign_4 = GameImage(SIGN_4, ((WINDOW_WIDTH / 2) + (40 * MENU_BUTTON_SCALE)),
+                       (CENTER_MENU_BUTTON_Y - (MENU_BUTTON_DISTANCE * 3) + (4 * MENU_BUTTON_SCALE)), MENU_BUTTON_SCALE * 2.5)
+
+    while True:
         WINDOW_DISPLAY.fill((255, 220, 0))
 
-        if (level_1.draw()):  
+        if level_1.draw():
             update_user_settings(4, "LEVEL: 1")
-            return "Level1" 
-        
-        elif (level_2.draw()): 
+            return "Level1"
+        elif level_2.draw():
             update_user_settings(4, "LEVEL: 2")
             return "Level2"
-        
-        sign_1.draw() 
-        sign_2.draw() 
+        elif level_3.draw():
+            update_user_settings(4, "LEVEL: 3")
+            return "Level3"
+        elif level_4.draw():
+            update_user_settings(4, "LEVEL: 4")
+            return "Level4"
 
-        if (ingame_menu_button.draw()):
+        sign_1.draw()
+        sign_2.draw()
+        sign_3.draw()
+        sign_4.draw()
+
+        if ingame_menu_button.draw():
             return "Main"
 
-        for event in pygame.event.get(): 
-            if (event.type == pygame.QUIT): 
-                pygame.quit() 
-                quit()  
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
 
-        pygame.display.update()  
+        pygame.display.update()
 
 def get_level(level_number): 
     """
@@ -78,11 +101,15 @@ def get_level(level_number):
         - level_number (int): The number of the level to retrieve
     Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
     """
-    if (level_number == 1):
+    if level_number == 1:
         return level_one()
-    elif (level_number == 2): 
-        return level_two() 
-    else: 
+    elif level_number == 2:
+        return level_two()
+    elif level_number == 3:
+        return level_three()
+    elif level_number == 4:
+        return last_level()
+    else:
         return level_test()
 
 def level_one(): 
@@ -111,13 +138,57 @@ def level_two():
     Parameters: N/a
     Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
     """ 
-    background, bg_image = get_background("Yellow.png")  
+    background, bg_image = get_background("Purple.png")  
     player = Player(100, 100, 50, 50)     
 
     fire = Fire(100, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
     fire.on() 
     floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)] 
     objects = [*floor, Block(0, WINDOW_HEIGHT - (BLOCK_SIZE * 2), BLOCK_SIZE), fire]  
+
+    return (background, bg_image, player, fire, objects)
+
+def level_three():
+    """
+    Name: level_three
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Generates information for the third level
+    Parameters: N/a
+    Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
+    """ 
+
+    background, bg_image = get_background("Blue.png")
+
+    player = Player(100, 100, 50, 50)
+
+    fire_1 = Fire(200, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
+    fire_2 = Fire(400, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
+    fire_3 = Fire(600, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
+    fire_4 = Fire(800, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
+
+    fire_1.on()
+
+    floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)]
+
+    objects = [*floor, Block(0, WINDOW_HEIGHT - (BLOCK_SIZE * 2), BLOCK_SIZE), fire_1, fire_2, fire_3, fire_4]
+
+    return (background, bg_image, player, fire_1, objects) 
+
+def last_level():
+    """
+    Name: last_level
+    Location: .../finding-el-dorado/functions/window_display_functions 
+    Purpose: Generates the last level
+    Parameters: N/a
+    Return: Returns a tuple containing information about the level (background, bg_image, player, fire, objects)
+    """ 
+    background, bg_image = get_background("Yellow.png")  
+    player = Player(100, 100, 50, 50)     
+
+    fire = Fire(100, -200, 16, 32)
+    floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)] 
+    floor2 = [Block(i * BLOCK_SIZE + 2000, WINDOW_HEIGHT - BLOCK_SIZE + 200, BLOCK_SIZE) for i in range(-WINDOW_WIDTH // BLOCK_SIZE, (WINDOW_WIDTH * 2) // BLOCK_SIZE)]  
+    objects = [*floor, *floor2, fire]  
 
     return (background, bg_image, player, fire, objects)
 

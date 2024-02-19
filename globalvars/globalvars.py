@@ -64,7 +64,9 @@ HOVER_CHARACTERS_IMAGE = pygame.image.load("assets/MyAssets/characters_hover.png
 LEVEL_SELECT_IMAGE = pygame.image.load("assets/MyAssets/level_select.png").convert_alpha()
 HOVER_LEVEL_SELECT_IMAGE = pygame.image.load("assets/MyAssets/level_select_hover.png").convert_alpha() 
 SIGN_1 = pygame.image.load("assets/Menu/Levels/01.png").convert_alpha() 
-SIGN_2 = pygame.image.load("assets/Menu/Levels/02.png").convert_alpha()
+SIGN_2 = pygame.image.load("assets/Menu/Levels/02.png").convert_alpha() 
+SIGN_3 = pygame.image.load("assets/Menu/Levels/03.png").convert_alpha() 
+SIGN_4 = pygame.image.load("assets/Menu/Levels/04.png").convert_alpha()
 
 ##### CHARACTER BUTTONS ##### 
 MASK_BUTTON = pygame.image.load("assets/MyAssets/mask.png").convert_alpha() 
