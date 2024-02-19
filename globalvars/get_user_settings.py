@@ -1,14 +1,20 @@
-user_file = open('user_settings.txt', 'r') 
+FILE_NAME = 'user_settings.txt' 
+USER_SETTINGS_RAW_LIST = []
 
-read_user_file = user_file.readlines()
+def get_user_settings():
+    user_file = open(FILE_NAME, 'r') 
+    read_user_file = user_file.readlines() 
 
-user_settings = []
+    for line in read_user_file: 
+        USER_SETTINGS_RAW_LIST.append(line.strip()) 
+    user_file.close()  
 
-for line in read_user_file: 
-    user_settings.append(line.strip())
- 
-USER_FPS = int(user_settings[0][5:]) 
-USER_WIDTH = int(user_settings[1][7:])
-USER_HEIGHT = int(user_settings[2][8:])
-USER_CHARACTER = user_settings[3][11:] 
-USER_LEVEL = int(user_settings[4][7:])
+def update_user_settings(line:int, content:str):
+    with open(FILE_NAME, "r") as file:
+        lines = file.readlines()
+        lines[line] = content + "\n"
+    with open(FILE_NAME, "w") as file:
+        file.write("".join(lines)) 
+
+
+

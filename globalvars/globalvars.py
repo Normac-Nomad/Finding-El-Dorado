@@ -3,8 +3,15 @@ from globalvars.get_user_settings import *
 
 pygame.init()
 
+get_user_settings()
+USER_FPS = int(USER_SETTINGS_RAW_LIST[0][5:]) 
+USER_WIDTH = int(USER_SETTINGS_RAW_LIST[1][7:])
+USER_HEIGHT = int(USER_SETTINGS_RAW_LIST[2][8:])
+USER_CHARACTER = USER_SETTINGS_RAW_LIST[3][11:] 
+USER_LEVEL = int(USER_SETTINGS_RAW_LIST[4][7:]) 
+
 GAME_CLOCK = pygame.time.Clock() 
-GAME_IS_RUNNING = None
+GAME_IS_RUNNING = None 
 GAME_FPS = USER_FPS  
 
 LEVEL_NUMBER = USER_LEVEL

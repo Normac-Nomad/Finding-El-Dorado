@@ -42,9 +42,12 @@ def levels():
      
         WINDOW_DISPLAY.fill((255, 220, 0))
 
-        if (level_1.draw()): 
-            return("Level1")
+        if (level_1.draw()):  
+            update_user_settings(4, "LEVEL: 1")
+            return("Level1") 
+        
         elif (level_2.draw()): 
+            update_user_settings(4, "LEVEL: 2")
             return("Level2")
         
         sign_1.draw() 
