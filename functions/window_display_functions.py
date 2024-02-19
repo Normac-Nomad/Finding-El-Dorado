@@ -63,14 +63,12 @@ def player_close_to_y_boundary(player, offset_y, scroll_width):
     else:  
         return 0  
 
-def quit_program():
+def quit_program(): 
     """  
     Name: Quit game
     Location: .../finding-el-dorado/functions/window_display_functions
     Purpose: Completely quits the game and program
     Return: N/a
     """  
-    #Add save level feature 
-    #Add save user prefrences feature (maybe not here)
     pygame.quit()
     quit()

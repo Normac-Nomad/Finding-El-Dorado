@@ -22,7 +22,7 @@ WINDOW_CAPTION = "Finding El Dorado!"
 WINDOW_WIDTH = USER_WIDTH
 WINDOW_HEIGHT = USER_HEIGHT
 WINDOW_SCROLL_BOUNDARY_X = 200 
-WINDOW_SCROLL_BOUNDARY_Y = 150 
+WINDOW_SCROLL_BOUNDARY_Y = 150
 
 PLAYER_VELOCITY = 5 
 PLAYER_SPRINT_SPEED = 5
@@ -54,8 +54,6 @@ MAIN_MENU_IMAGE = pygame.image.load("assets/MyAssets/main_menu.png").convert_alp
 HOVER_MAIN_MENU_IMAGE = pygame.image.load("assets/MyAssets/main_menu_hover.png").convert_alpha()
 OPTIONS_IMAGE = pygame.image.load("assets/MyAssets/options.png").convert_alpha()  
 HOVER_OPTIONS_IMAGE = pygame.image.load("assets/MyAssets/options_hover.png").convert_alpha()
-VIDEO_IMAGE = pygame.image.load("assets/MyAssets/video.png").convert_alpha()  
-HOVER_VIDEO_IMAGE = pygame.image.load("assets/MyAssets/video_hover.png").convert_alpha()
 LEVELS_IMAGE = pygame.image.load("assets/MyAssets/levels.png").convert_alpha()  
 HOVER_LEVELS_IMAGE = pygame.image.load("assets/MyAssets/levels_hover.png").convert_alpha()
 CHARACTERS_IMAGE = pygame.image.load("assets/MyAssets/characters.png").convert_alpha()  
@@ -75,4 +73,12 @@ FROG_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/NinjaFrog/jump.png")
 PINK_BUTTON = pygame.image.load("assets/MyAssets/pink.png").convert_alpha()  
 PINK_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/PinkMan/jump.png").convert_alpha()
 VIRTUAL_BUTTON = pygame.image.load("assets/MyAssets/virtual.png").convert_alpha() 
-VIRTUAL_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/VirtualGuy/jump.png").convert_alpha()
+VIRTUAL_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/VirtualGuy/jump.png").convert_alpha() 
+
+##### OPTIONS BUTTONS #####
+R1280_IMAGE = pygame.image.load("assets/MyAssets/1280.png").convert_alpha()  
+HOVER_R1280_IMAGE = pygame.image.load("assets/MyAssets/1280_hover.png").convert_alpha() 
+R1024_IMAGE = pygame.image.load("assets/MyAssets/1024.png").convert_alpha()  
+HOVER_R1024_IMAGE = pygame.image.load("assets/MyAssets/1024_hover.png").convert_alpha()
+R800_IMAGE = pygame.image.load("assets/MyAssets/800.png").convert_alpha()  
+HOVER_R800_IMAGE = pygame.image.load("assets/MyAssets/800_hover.png").convert_alpha() 
