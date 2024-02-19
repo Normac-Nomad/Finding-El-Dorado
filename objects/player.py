@@ -3,20 +3,19 @@ from globalvars.globalvars import *
 from functions.sprite_functions import *  
 from functions.window_display_functions import * 
 
-class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image part of a larger image
+class Player(pygame.sprite.Sprite): 
     """  
     Name: Player
     Location: .../finding-el-dorado/objects/player 
     Purpose: Playable character used by the user
     Return: N/a
-    """ 
-    player_sprite = load_sprite_sheets("MainCharacters", PLAYER_CHARACTER, 32, 32, True) #final argument is for multidirectional sprites
+    """   
     player_animation_delay = 3
     player_gravity = GRAVITY
 
     def __init__(self, x, y, width, height):
         super().__init__()
-        self.rect = pygame.Rect(x,y, width, height) # !!!! don't understand this, later !!!! 
+        self.rect = pygame.Rect(x,y, width, height)
         self.x_vel = 0
         self.y_vel = 0 
         self.mask = None 
@@ -25,16 +24,20 @@ class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image pa
         self.fall_count = 0 
         self.jump_count = 0  
         self.hit = False 
-        self.hit_count = 0 
+        self.hit_count = 0  
+        
+        user_settings = []   
+        user_settings = get_user_settings(user_settings)
+        self.player_sprite = load_sprite_sheets("MainCharacters", user_settings[3][11:], 32, 32, True)
 
     def update(self): 
         self.rect = self.sprite.get_rect(topleft = (self.rect.x, self.rect.y)) 
-        self.mask = pygame.mask.from_surface(self.sprite) #This line ensures we have pixel perfect collison, we are extracting only the pixels to the mask, that way we are no including the empty pixels in the sprite sheet
+        self.mask = pygame.mask.from_surface(self.sprite)
 
     def draw(self, win, offset_x, offset_y): 
-        win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y - offset_y)) #draws the player sprite onto the window
+        win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y - offset_y))
 
-    def move(self, dx, dy): #d = displacement arguments 
+    def move(self, dx, dy):
         self.rect.x += dx 
         self.rect.y += dy  
 
@@ -54,9 +57,8 @@ class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image pa
         self.y_vel = -self.player_gravity * 8 
         self.animation_count = 0 
         self.jump_count +=1
-        if self.jump_count == 1: #as soon as we jump
-            self.fall_count = 0 #we reset the fall count to get rid of the accumulated gravity
-            #change the fall count value, and boost the double jump, I don't like this mechanic 
+        if self.jump_count == 1: 
+            self.fall_count = 0  
 
     def landed(self): 
         self.fall_count = 0 
@@ -72,7 +74,7 @@ class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image pa
         self.hit_count = 0
 
     def loop(self, fps):  
-        self.y_vel += min(1, (self.fall_count / fps) * self.player_gravity) #gravity for our sprite
+        self.y_vel += min(1, (self.fall_count / fps) * self.player_gravity) 
         self.move(self.x_vel, self.y_vel)  
 
         if self.hit: 
@@ -93,7 +95,7 @@ class Player(pygame.sprite.Sprite): #slightly related: a sprite is a 2D image pa
                 sprite_sheet = "jump" 
             elif self.jump_count == 2: 
                 sprite_sheet = "double_jump" 
-        elif self.y_vel > self.player_gravity * 2: #ensures that we have a sufficient amount of velocity before showing the fall animation
+        elif self.y_vel > self.player_gravity * 2: 
             sprite_sheet = "fall"        
         elif self.x_vel != 0: 
             sprite_sheet = "run" 

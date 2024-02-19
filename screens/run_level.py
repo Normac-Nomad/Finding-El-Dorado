@@ -14,8 +14,11 @@ def play_game():
     Return: N/a 
 
     Note: The player can exit the game and the program from this
-    """ 
-    background, bg_image, the_player, fire, objects = get_level(LEVEL_NUMBER) 
+    """  
+    user_settings = []   
+    user_settings = get_user_settings(user_settings)
+    background, bg_image, the_player, fire, objects = get_level(int(user_settings[4][7:])) 
+    print(user_settings[4][7:]) 
     offset_x = 0
     offset_y = 0
 

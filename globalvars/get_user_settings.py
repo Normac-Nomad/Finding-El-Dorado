@@ -1,15 +1,16 @@
 FILE_NAME = 'user_settings.txt' 
-USER_SETTINGS_RAW_LIST = []
 
-def get_user_settings():
-    user_file = open(FILE_NAME, 'r') 
-    read_user_file = user_file.readlines() 
+def get_user_settings(list_name): 
 
-    for line in read_user_file: 
-        USER_SETTINGS_RAW_LIST.append(line.strip()) 
-    user_file.close()  
+    with open(FILE_NAME, 'r') as user_file:
+        read_user_file = user_file.readlines() 
+        
+        for line in read_user_file: 
+            list_name.append(line.strip())  
+    
+    return (list_name)
 
-def update_user_settings(line:int, content:str):
+def update_user_settings(line, content):
     with open(FILE_NAME, "r") as file:
         lines = file.readlines()
         lines[line] = content + "\n"

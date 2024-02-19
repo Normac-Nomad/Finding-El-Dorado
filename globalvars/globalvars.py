@@ -3,12 +3,13 @@ from globalvars.get_user_settings import *
 
 pygame.init()
 
-get_user_settings()
+USER_SETTINGS_RAW_LIST = [] 
+USER_SETTINGS_RAW_LIST = get_user_settings(USER_SETTINGS_RAW_LIST)
 USER_FPS = int(USER_SETTINGS_RAW_LIST[0][5:]) 
 USER_WIDTH = int(USER_SETTINGS_RAW_LIST[1][7:])
 USER_HEIGHT = int(USER_SETTINGS_RAW_LIST[2][8:])
 USER_CHARACTER = USER_SETTINGS_RAW_LIST[3][11:] 
-USER_LEVEL = int(USER_SETTINGS_RAW_LIST[4][7:]) 
+USER_LEVEL = int(USER_SETTINGS_RAW_LIST[4][7:])
 
 GAME_CLOCK = pygame.time.Clock() 
 GAME_IS_RUNNING = None 
@@ -65,3 +66,13 @@ LEVEL_SELECT_IMAGE = pygame.image.load("assets/MyAssets/level_select.png").conve
 HOVER_LEVEL_SELECT_IMAGE = pygame.image.load("assets/MyAssets/level_select_hover.png").convert_alpha() 
 SIGN_1 = pygame.image.load("assets/Menu/Levels/01.png").convert_alpha() 
 SIGN_2 = pygame.image.load("assets/Menu/Levels/02.png").convert_alpha()
+
+##### CHARACTER BUTTONS ##### 
+MASK_BUTTON = pygame.image.load("assets/MyAssets/mask.png").convert_alpha() 
+MASK_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/MaskDude/jump.png").convert_alpha()
+FROG_BUTTON = pygame.image.load("assets/MyAssets/frog.png").convert_alpha()  
+FROG_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/NinjaFrog/jump.png").convert_alpha()
+PINK_BUTTON = pygame.image.load("assets/MyAssets/pink.png").convert_alpha()  
+PINK_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/PinkMan/jump.png").convert_alpha()
+VIRTUAL_BUTTON = pygame.image.load("assets/MyAssets/virtual.png").convert_alpha() 
+VIRTUAL_JUMP_BUTTON = pygame.image.load("assets/MainCharacters/VirtualGuy/jump.png").convert_alpha()

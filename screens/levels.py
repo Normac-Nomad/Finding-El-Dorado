@@ -72,10 +72,9 @@ def get_level(level_number):
     else: 
         return level_test()
 
-def level_one():   
-    
+def level_one(): 
     background, bg_image = get_background("Sky.png")  
-    player = Player(100, 100, 50, 50) 
+    player = Player(100, 100, 50, 50)  
 
     fire = Fire(100, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
     fire.on()
@@ -85,9 +84,8 @@ def level_one():
     return (background, bg_image, player, fire, objects) 
 
 def level_two():   
-    
     background, bg_image = get_background("Yellow.png")  
-    player = Player(100, 100, 50, 50)    
+    player = Player(100, 100, 50, 50)     
 
     fire = Fire(100, WINDOW_HEIGHT - BLOCK_SIZE - 64, 16, 32)
     fire.on() 
@@ -99,7 +97,7 @@ def level_two():
 def level_test():   
     
     background, bg_image = get_background("Gray.png")  
-    player = Player(100, 100, 50, 50)    
+    player = Player(100, 100, 50, 50)  
 
     fire = Fire(100, - WINDOW_HEIGHT, 16, 32)
     floor = [Block(i * BLOCK_SIZE, WINDOW_HEIGHT - BLOCK_SIZE, BLOCK_SIZE) for i in range(10)] 
