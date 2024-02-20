@@ -7,7 +7,7 @@ from screens.run_level import *
 from screens.options import * 
 from screens.characters import * 
 
-######################## MAIN ########################
+######################### MAIN #########################
 
 def main(window):  
     
